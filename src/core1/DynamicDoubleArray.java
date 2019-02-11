@@ -23,13 +23,22 @@ public class DynamicDoubleArray {
     public void add(double e) {
         array[currLength] = e;
         if (++currLength == array.length) {
-            resize();
+            double[] newArray = new double[array.length * 2];
+            System.arraycopy(array, 0, newArray, 0, array.length);
+            array = newArray;
         }
     }
 
-    private void resize() {
-        double[] newArray = new double[array.length * 2];
-        System.arraycopy(array, 0, newArray, 0, array.length);
+    public void remove(int i) {
+        int t = 0;
+        double[] newArray = new double[currLength - 1];
+        for (int j = 0; j < currLength; j++) {
+            if (j != i){
+                newArray[t] = array[j];
+                t++;
+            }
+        }
+        currLength--;
         array = newArray;
     }
 

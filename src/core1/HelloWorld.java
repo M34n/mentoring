@@ -9,6 +9,8 @@ public class HelloWorld {
         array.add(2.0);
         array.add(2.0);
         array.add(2.0);
+        array.add(2.0);
+        array.remove(3);
 
         System.out.println(array);
     }
