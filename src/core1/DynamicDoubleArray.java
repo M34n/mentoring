@@ -30,22 +30,25 @@ public class DynamicDoubleArray {
     }
 
     public void remove(int i) {
-        int t = 0;
-        double[] newArray = new double[currLength - 1];
-        for (int j = 0; j < currLength; j++) {
-            if (j != i){
-                newArray[t] = array[j];
-                t++;
-            }
-        }
+        System.arraycopy(array, i, array, i + 1, currLength - i - 1);
         currLength--;
-        array = newArray;
+        if (currLength <= array.length / 2) {
+            double[] newArray = new double[currLength];
+            System.arraycopy(array, 0, newArray, 0, currLength);
+            array = newArray;
+        }
     }
 
     @Override
     public String toString() {
-        return "DynamicDoubleArray{" +
-                "array=" + Arrays.toString(array) +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder("[");
+        for (int i = 0; i < currLength; i++) {
+            stringBuilder.append(array[i]);
+            if (i != currLength - 1) {
+                stringBuilder.append(", ");
+            }
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
     }
 }
