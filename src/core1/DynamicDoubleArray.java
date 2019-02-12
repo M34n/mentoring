@@ -1,8 +1,5 @@
 package core1;
 
-
-import java.util.Arrays;
-
 public class DynamicDoubleArray {
     private double[] array;
     private int currLength;
